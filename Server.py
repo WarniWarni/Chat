@@ -23,12 +23,16 @@ class Server:
         while True:
             data = c.recv(1024)
             if data:
-                for connection in self.connections:
-                    # roześlij info do każdego klienta
-                    connection.send(data)
-                print(data)
-            else:
-                break
+                try:
+                    for connection in self.connections:
+                        # roześlij info do każdego klienta
+                        connection.send(data)
+                    print(data)
+                except ConnectionResetError:
+                    print("{}: {} disconnected".format(str(a[0]), str(a[1])))
+                    self.connections.remove(c)
+                    c.close()
+                    break
 
     def run(self):
         while True:
