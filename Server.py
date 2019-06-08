@@ -25,7 +25,7 @@ class Server:
             if data:
                 try:
                     for connection in self.connections:
-                        # roześlij info do każdego klienta
+                        # rozeslij info do kazdego klienta
                         connection.send(data)
                     print(data)
                 except ConnectionResetError:
@@ -70,7 +70,7 @@ class Client:
 
 IP_ADDR = get_arguments()
 if IP_ADDR:
-    '''jeśli mamy podany adres ip, to jesteśmy klientem'''
+    '''jesli mamy podany adres ip, to jestesmy klientem'''
     client = Client(IP_ADDR)
     pass
 else:
